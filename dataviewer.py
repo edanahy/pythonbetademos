@@ -1,4 +1,4 @@
-## live_data_viewer.py — Live Device Data Viewer Demo (PyScript / browser)
+## dataviewer.py — Live Device Data Viewer Demo (PyScript / browser)
 ## =====================================================================
 ##
 ## Streams live data from a connected LEGO device into a Chart.js line graph.
