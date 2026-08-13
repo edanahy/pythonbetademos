@@ -77,7 +77,7 @@ move the paddles up and down. Full screen mode takes over the entire browser win
 
 1. Navigate to the `template` folder: [./template](./template)
 2. Download the two files: [`template.py`](./template/template.py) file and the [`instructions.md`](./template/instructions.md)
-3. Feed both to a LLM, using the [`instructions.txt`](./template/instructions.txt`) text along with new description of desired interface, functionality, behavior, etc.
+3. Feed both to a LLM, using the [`instructions.txt`](./template/instructions.txt) text along with new description of desired interface, functionality, behavior, etc.
 4. Open the generated Python code in the https://beta.python.legoeducation.com app.
 5. Connect the necessary hardware (and give appropriate name)
 6. Hit "Run" to run the demo
