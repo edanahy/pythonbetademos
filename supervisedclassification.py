@@ -1,5 +1,5 @@
-## nearest_neighbor_demo.py — Nearest-Neighbor Supervised Classification  v2
-## ============================================================================
+## supervisedclassification.py — Nearest-Neighbor Supervised Classification
+## ========================================================================
 ##
 ## Educational demo: collect (input, output) hardware data pairs, then deploy
 ## a nearest-neighbor model that reads input continuously and drives the output
