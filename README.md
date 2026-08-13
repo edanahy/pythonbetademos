@@ -56,6 +56,22 @@ File: [`pong.py`](./pong.py)
 
 ---
 
+## Cloned Interface
+
+If there is an issue with the official LEGO Education Python Web IDE (https://beta.python.legoeducation.com), use the following.
+
+That is, in case LEGO Education changes the layout of the page, update how the site is deployed, or some other change to the interface
+that makes these demonstrations no longer work in their version, you can use the following ***CLONED*** version (from 2026-08-12).
+
+https://edanahy.github.io/pythonbetademos/betasite/
+
+This is a "local" version that runs in GitHub Pages, independent of the LEGO Education domain/server.  It is a snapshot
+of the site (aka an unauthorized clone) from the 12th of August, 2026.
+
+---
+
 ## Credits/Information
 
 Demos created by Ethan Danahy in collaboration with Claude, August 2026.
+
+LEGO, the LEGO logo, the Minifigure, LEGO Education, the LEGO Education logo, DUPLO, the SPIKE logo, MINDSTORMS and the MINDSTORMS logo are trademarks and/or copyrights of the LEGO Group, which does not sponsor, authorize, or endorse this project. All other trademarks and copyrights are the property of their respective owners. All rights reserved.
