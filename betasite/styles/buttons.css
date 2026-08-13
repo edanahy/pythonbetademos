@@ -1,0 +1,53 @@
+button {
+    padding: 0.6rem 1.2rem; border: none; border-radius: 6px;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-standard {
+    all: unset;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0%;
+    white-space: nowrap;
+}
+
+.btn-outline {
+    border: 1.5px solid #000000;
+    color: #000;
+    background-color: var(--content-background-color);
+    fill: #000;
+}
+.btn-outline:hover {
+    color: #fff;
+    background-color: var(--dark-background-color);
+    fill: #fff;
+}
+.btn-md {
+    gap: .5rem;
+    height: 3rem;
+    padding: 1rem 20px;
+    font-size: 16px;
+}
+.btn-sm {
+    gap: .5rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+}
+
+.btn-run { background: #00a843; color: #ffffff; }
+.btn-stop { background: #cc4444; color: #fff; }
+.btn-regular { background: #3a3a5a; color: #e0e0e0; }

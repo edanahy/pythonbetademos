@@ -1,0 +1,11 @@
+/* CodeMirror container */
+#editor-container {
+    flex: 1; border-radius: 8px; overflow: hidden;
+    border: 1px solid #444;
+}
+#editor-container .cm-editor {
+    height: 100%;
+}
+#editor-container .cm-scroller {
+    overflow: auto;
+}

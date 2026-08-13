@@ -1,0 +1,32 @@
+.content-container {
+    margin:0 1rem 0.2rem;
+    padding: 1rem;
+    background: var(--content-background-color);
+    border-radius: 24px;
+}
+
+/* Split screen layout */
+.split-container {
+    display: flex; gap: 1.5rem;
+    height: calc(100vh - 12rem); min-height: 400px;
+}
+.split-left, .split-right { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+@media (max-width: 900px) {
+    .content-container {
+        margin: 0;
+        padding: 0.5rem; 
+        border-radius: 0; 
+    }
+    .split-container { flex-direction: column; height: auto; }
+    .split-left, .split-right { height: 50vh; }
+}
+
+.footer {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #606274;
+}
+.footer p {
+    margin: 0.2rem 0;
+}

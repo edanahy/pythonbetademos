@@ -1,0 +1,41 @@
+.panel-header {
+    display:flex; 
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:0.4rem;
+}
+
+.panel-header h2 {
+    font-weight:600; font-size:0.85rem;
+}
+ /* Output panels */
+
+.output-panel {
+    border: 1px solid var(--border-outline-color);
+    border-radius: 8px;
+    background-color: var(--dark-background-color);
+    padding: 0.75rem; 
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem; line-height: 1.6;
+}
+
+#stdout {
+    flex: 1;
+    white-space: pre-wrap; 
+    overflow-y: auto;
+}
+#log {
+    white-space: pre-wrap; 
+    max-height: 20vh; 
+    overflow-y: auto;
+    margin-bottom: 0;
+}
+#log-container summary {
+    cursor: pointer;
+}
+#log-container summary .panel-header {
+    display: inline-flex;
+    width: calc(100% - 20px);
+}

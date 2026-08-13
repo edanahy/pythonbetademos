@@ -1,0 +1,45 @@
+/* Variables */
+:root {
+    --background-color: #eaebf0;
+    --text-color: #606274;
+    --header-color: #fcfcfc;
+    --content-background-color: #fcfcfc;
+    --border-outline-color: #000000;
+    --dark-background-color: #3d3d3d;
+}
+
+/* Global Styles */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+body,
+input,
+button,
+textarea,
+select {
+  font-family: LEGO Typewell, sans-serif;
+}
+
+/* Beta ribbon */
+body:after{
+    content: "beta";
+    position: absolute;
+    width: 175px;
+    height: 30px;
+    background: #4a94ee;
+    top: 35px;
+    right: -35px;
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    line-height: 28px;
+    transform: rotate(45deg);
+    letter-spacing: 1px;
+}

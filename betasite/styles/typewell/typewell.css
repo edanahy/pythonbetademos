@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 900;
+  font-style: normal;
+  src: url("./LEGOTypewell-Black.woff2") format("woff2"), url("./LEGOTypewell-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 700;
+  font-style: normal;
+  src: url("./LEGOTypewell-Bold.woff2") format("woff2"), url("./LEGOTypewell-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./LEGOTypewell-Regular.woff2") format("woff2"), url("./LEGOTypewell-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./LEGOTypewell-Light.woff2") format("woff2"), url("./LEGOTypewell-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 900;
+  font-style: italic;
+  src: url("./LEGOTypewell-BlackItalic.woff2") format("woff2"), url("./LEGOTypewell-BlackItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 700;
+  font-style: italic;
+  src: url("./LEGOTypewell-BoldItalic.woff2") format("woff2"), url("./LEGOTypewell-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 400;
+  font-style: italic;
+  src: url("./LEGOTypewell-Italic.woff2") format("woff2"), url("./LEGOTypewell-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 300;
+  font-style: italic;
+  src: url("./LEGOTypewell-LightItalic.woff2") format("woff2"), url("./LEGOTypewell-LightItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 500;
+  font-style: normal;
+  src: url("./LEGOTypewell-Medium.woff2") format("woff2"), url("./LEGOTypewell-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "LEGO Typewell";
+  font-weight: 500;
+  font-style: italic;
+  src: url("./LEGOTypewell-MediumItalic.woff2") format("woff2"), url("./LEGOTypewell-MediumItalic.woff") format("woff");
+}

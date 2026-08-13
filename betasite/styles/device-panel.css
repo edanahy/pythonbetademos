@@ -1,0 +1,36 @@
+/* Device Panel */
+#device-rows:empty:before {
+   content: 'No devices prepared. Click "+ Add Device" to connect and prepare a device.';
+   font-style: italic;
+}
+.device-row {
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-bottom: 0.4rem; font-size: 0.8rem;
+}
+.device-row select, .device-row input {
+    background: var(--content-background-color); color: var(--text-color); border: 1px solid var(--border-outline-color);
+    border-radius: 4px; padding: 0.3rem 0.4rem; font-size: 0.8rem;
+}
+.device-row input {
+    width: 100px;
+}
+
+@media (max-width: 450px) {
+    .device-row select:disabled { width: 90px; }
+    .device-row input { width: 90px; }
+}
+
+.device-row input.invalid {
+    border-color: #cc4444;
+}
+.device-row .status-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #555; flex-shrink: 0;
+}
+.device-row .status-dot.connected { background: #44cc44; }
+.device-row .status-dot.connecting { background: #f5c518; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.device-row button {
+    line-height: 1rem;
+}

@@ -1,0 +1,10 @@
+header {
+    padding: 10px;
+    background: var(--header-color);
+    display: flex; align-items: center; gap: 1rem;
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 1.5rem;
+}

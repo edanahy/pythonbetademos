@@ -1,0 +1,28 @@
+.status-bar-container {
+    height: 40px;
+}
+.status-bar {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    height: 40px;
+}
+.status-loading { 
+    background: #5252fd; 
+    color: #ffffff; 
+}
+.status-ready { 
+    background: #00a843; 
+    color: #ffffff;
+    transition-property: height, padding;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    height: 4px;
+    transition-delay: 2s;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+.status-error { 
+    background: #cc4444; 
+    color: #ffffff; 
+}
