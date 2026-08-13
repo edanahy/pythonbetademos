@@ -1,0 +1,26 @@
+I am attaching two files:
+
+- `template.py` — a PyScript skeleton that runs on a LEGO Education browser
+  page. It injects a custom UI into the page and can communicate with
+  attached LEGO hardware.
+- `INSTRUCTIONS.md` — technical rules and reference for building demos with
+  this system. Read this carefully before writing any code.
+
+Please create a new demo `.py` file based on the template. Follow all rules
+in INSTRUCTIONS.md exactly, especially the critical rules around name mangling,
+async `update()`, and the poll loop pattern.
+
+Here is what I want the demo to do:
+
+---
+
+[Describe your demo here. Include:
+  - What the left-column display should show
+  - What the right-column panel should show
+  - What hardware is connected and what it's named on the page
+  - What buttons the user will have
+  - What triggers what — e.g. "when sensor reads above 50, run the motor"]
+
+---
+
+Return a single `.py` file I can download and load into the page.
