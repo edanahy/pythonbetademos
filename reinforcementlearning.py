@@ -1,5 +1,5 @@
-## rl_qtable_demo.py — Reinforcement Learning Q-Table Walker Demo
-## ================================================================
+## reinforcementlearning.py — Reinforcement Learning Q-Table Walker Demo
+## =====================================================================
 ## PyScript demo for the LEGO Education browser page.
 ## Teaches Q-learning by training a DoubleMotor robot to walk straight.
 ##
