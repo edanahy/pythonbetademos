@@ -1,4 +1,4 @@
-## Pose Detection Demo (PyScript / browser)
+## posedetection.py - Pose Detection Demo (PyScript / browser)
 ## =========================================================================
 ##
 ## FILE LAYOUT
