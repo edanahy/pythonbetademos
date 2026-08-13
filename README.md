@@ -75,12 +75,14 @@ move the paddles up and down. Full screen mode takes over the entire browser win
 
 ## Creating new Demos
 
+Interested in creating your own demos? Use GenAI to help you make one!
+
 1. Navigate to the `template` folder: [./template](./template)
-2. Download the two files: [`template.py`](./template/template.py) file and the [`instructions.md`](./template/instructions.md)
-3. Feed both to a LLM, using the [`instructions.txt`](./template/instructions.txt) text along with new description of desired interface, functionality, behavior, etc.
+2. Download the two files: [`template.py`](./template/template.py) and [`instructions.md`](./template/instructions.md)
+3. Feed both files to a LLM, and type in the [`instructions.txt`](./template/instructions.txt) text updating it with new description of desired interface, functionality, behavior, etc.
 4. Open the generated Python code in the https://beta.python.legoeducation.com app.
-5. Connect the necessary hardware (and give appropriate name)
-6. Hit "Run" to run the demo
+5. Connect your LEGO Education Hardware (and re-name as necessary)
+6. Hit "Run" to add the demo to the page
 7. Follow instructions/use interface as directed
 
 ### Documentation
