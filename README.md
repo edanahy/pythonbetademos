@@ -14,8 +14,8 @@ Demos built on top of the Beta Python Interface (https://beta.python.legoeducati
    - [Pong](./pong.py)
 2. Navigate to https://beta.python.legoeducation.com
 3. "Open" the `.py` file for the demo in the LEGO Education interface
-4. Connect the necessary hardware (and re-name as needed)
-5. Hit "Run" to run the demo
+4. Connect your LEGO Education Hardware (and re-name as necessary)
+5. Hit "Run" to add the demo to the page
 6. Follow instructions/use interface as directed
 
 ---
@@ -24,23 +24,52 @@ Demos built on top of the Beta Python Interface (https://beta.python.legoeducati
 
 ### Data Viewer 
 
-File: [`dataviewer.py`](./dataviewer.py)
+![Data Viewer Interface](./images/dataviewer.png)
+
+The **Data Viewer** allows streaming data from a connected device to be plotted/viewed in real-time on a graph.
+Works with any of the LEGO Education Hardware (Single Motor, Double Motor, Color Sensor, Controller).
+
+- File: [`dataviewer.py`](./dataviewer.py)
 
 ### Pose Detection 
 
-File: [`posedetection.py`](./posedetection.py)
+![Pose Detection Interface](./images/posedetection.png)
+
+The **Pose Detection** connects to the computer's webcam, does
+[pose landmark detection](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker),
+detects if arms are up-or-down, and controls a Double Motor (suggestion: use the
+[Strike a Pose](https://teach.legoeducation.com/en-us/computer-science/lesson/strike-a-pose) model).
+
+- File: [`posedetection.py`](./posedetection.py)
 
 ### Supervised Classification
 
-File: [`supervisedclassification.py`](./supervisedclassification.py)
+![Supervised Classification Interface](./images/supervisedclassification.png)
+
+The **Supervised Classification** links input-values to output-values in a nearest-neighbor supervised
+classification model. Collect a series of paired values (inputs and outputs) then deploy the model.
+Works with any of the LEGO Education Hardware (Single Motor, Double Motor, Color Sensor, Controller).
+
+- File: [`supervisedclassification.py`](./supervisedclassification.py)
 
 ### Reinforcement Learning
 
-File: [`reinforcementlearning.py`](./reinforcementlearning.py)
+![Reinforcement Learning Interface](./images/reinforcementlearning.png)
+
+The **Reinforcement Learning** creates a "Smart Walker" from a Double Motor "Silly Walks" robot. With
+different legs on each motor, through development of a Reinforcement Learning Q-Table set of values,
+the Silly Walks robot learns to walk straight.
+
+- File: [`reinforcementlearning.py`](./reinforcementlearning.py)
 
 ### Pong
 
-File: [`pong.py`](./pong.py)
+![Pong Interface](./images/pong.png)
+
+The **Pong** game is controlled by the left-and-right sides of the Double Motor. Spinning the motors
+move the paddles up and down. Full screen mode takes over the entire browser window.
+
+- File: [`pong.py`](./pong.py)
 
 ---
 
@@ -53,6 +82,10 @@ File: [`pong.py`](./pong.py)
 5. Connect the necessary hardware (and give appropriate name)
 6. Hit "Run" to run the demo
 7. Follow instructions/use interface as directed
+
+### Documentation
+
+Visit https://github.com/LEGO/LEGOEducation for the official LEGO Education documentation on coding the hardware with Python.
 
 ---
 
