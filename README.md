@@ -96,12 +96,12 @@ Visit https://github.com/LEGO/LEGOEducation for the official LEGO Education docu
 If there is an issue with the official LEGO Education Python Web IDE (https://beta.python.legoeducation.com), use the following.
 
 That is, in case LEGO Education changes the layout of the page, update how the site is deployed, or some other change to the interface
-that makes these demonstrations no longer work in their version, you can use the following ***CLONED*** version (from 2026-08-12).
+that makes these demonstrations no longer work in their version, you can use the following ***CLONED*** version (last synced, 2026-08-20).
 
 https://edanahy.github.io/pythonbetademos/betasite/
 
 This is a "local" version that runs in GitHub Pages, independent of the LEGO Education domain/server.  It is a snapshot
-of the site (aka an unauthorized clone) from the 12th of August, 2026.
+of the site (aka an unauthorized clone), last synced on 20th of August, 2026.
 
 ---
 
