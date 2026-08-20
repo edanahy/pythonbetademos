@@ -7,11 +7,11 @@ Demos built on top of the Beta Python Interface (https://beta.python.legoeducati
 ## Running the Demos
 
 1. Download the Python demo file you want to run:
-   - [Data Viewer](./dataviewer.py)
-   - [Pose Detection](./posedetection.py)
-   - [Supervised Classification](./supervisedclassification.py)
-   - [Reinforcement Learning](./reinforcementlearning.py)
-   - [Pong](./pong.py)
+   - [Data Viewer](./plugins/dataviewer.py)
+   - [Pose Detection](./plugins/posedetection.py)
+   - [Supervised Classification](./plugins/supervisedclassification.py)
+   - [Reinforcement Learning](./plugins/reinforcementlearning.py)
+   - [Pong](./plugins/pong.py)
 2. Navigate to https://beta.python.legoeducation.com
 3. "Open" the `.py` file for the demo in the LEGO Education interface
 4. Connect your LEGO Education Hardware (and re-name as necessary)
@@ -29,7 +29,7 @@ Demos built on top of the Beta Python Interface (https://beta.python.legoeducati
 The **Data Viewer** allows streaming data from a connected device to be plotted/viewed in real-time on a graph.
 Works with any of the LEGO Education Hardware (Single Motor, Double Motor, Color Sensor, Controller).
 
-- File: [`dataviewer.py`](./dataviewer.py)
+- File: [`dataviewer.py`](./plugins/dataviewer.py)
 
 ### Pose Detection 
 
@@ -40,7 +40,7 @@ The **Pose Detection** connects to the computer's webcam, does
 detects if arms are up-or-down, and controls a Double Motor (suggestion: use the
 [Strike a Pose](https://teach.legoeducation.com/en-us/computer-science/lesson/strike-a-pose) model).
 
-- File: [`posedetection.py`](./posedetection.py)
+- File: [`posedetection.py`](./plugins/posedetection.py)
 
 ### Supervised Classification
 
@@ -50,7 +50,7 @@ The **Supervised Classification** links input-values to output-values in a neare
 classification model. Collect a series of paired values (inputs and outputs) then deploy the model.
 Works with any of the LEGO Education Hardware (Single Motor, Double Motor, Color Sensor, Controller).
 
-- File: [`supervisedclassification.py`](./supervisedclassification.py)
+- File: [`supervisedclassification.py`](./plugins/supervisedclassification.py)
 
 ### Reinforcement Learning
 
@@ -60,7 +60,7 @@ The **Reinforcement Learning** creates a "Smart Walker" from a Double Motor "Sil
 different legs on each motor, through development of a Reinforcement Learning Q-Table set of values,
 the Silly Walks robot learns to walk straight.
 
-- File: [`reinforcementlearning.py`](./reinforcementlearning.py)
+- File: [`reinforcementlearning.py`](./plugins/reinforcementlearning.py)
 
 ### Pong
 
@@ -69,7 +69,7 @@ the Silly Walks robot learns to walk straight.
 The **Pong** game is controlled by the left-and-right sides of the Double Motor. Spinning the motors
 move the paddles up and down. Full screen mode takes over the entire browser window.
 
-- File: [`pong.py`](./pong.py)
+- File: [`pong.py`](./plugins/pong.py)
 
 ---
 
