@@ -1,192 +1,191 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<link rel="icon" href="./favicon.svg" type="image/svg+xml">
-	<title>LEGO Education — Web IDE</title>
-	<!-- mini-coi service worker for cross-origin isolation (needed for stack-switching) -->
-	<script src="./mini-coi-fd.js" scope="./"></script>
-	<link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
-	<script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
-	<link rel="stylesheet" href="./styles/typewell/typewell.css" />
-	<link rel="stylesheet" href="./styles/root.css" />
-	<link rel="stylesheet" href="./styles/layout.css" />
-	<link rel="stylesheet" href="./styles/buttons.css" />
-	<link rel="stylesheet" href="./styles/header.css" />
-	<link rel="stylesheet" href="./styles/output-panel.css" />
-	<link rel="stylesheet" href="./styles/device-panel.css" />
-	<link rel="stylesheet" href="./styles/editor.css" />
-	<link rel="stylesheet" href="./styles/toolbar.css" />
-	<link rel="stylesheet" href="./styles/status-bar.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <title>LEGO Education — Web IDE</title>
+    <!-- mini-coi service worker for cross-origin isolation (needed for stack-switching) -->
+    <script src="./mini-coi-fd.js" scope="./"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
+    <link rel="stylesheet" href="./styles/typewell/typewell.css" />
+    <link rel="stylesheet" href="./styles/root.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/buttons.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/output-panel.css" />
+    <link rel="stylesheet" href="./styles/device-panel.css" />
+    <link rel="stylesheet" href="./styles/editor.css" />
+    <link rel="stylesheet" href="./styles/toolbar.css" />
+    <link rel="stylesheet" href="./styles/status-bar.css" />
 </head>
 
 <body>
-	<header>
-		<img src="./images/lego-education-size-md-theme-light-shorthand-no.svg" alt="LEGO Logo">
-		<h1>- Python Web IDE <span style="color: red">→ CLONED VERSION (2026-08-12)</span></h1>
-	</header>
-	<div class="status-bar-container">
-		<div id="status-bar" class="status-bar status-loading">⏳ Loading…</div>
-	</div>
+    <header>
+        <img src="./images/lego-education-size-md-theme-light-shorthand-no.svg" alt="LEGO Logo">
+        <h1>- Python Web IDE <span style="color: red">→ CLONED VERSION (2026-08-20)</span></h1>
+    </header>
+    <div class="status-bar-container">
+        <div id="status-bar" class="status-bar status-loading">⏳ Loading…</div>
+    </div>
 
-	<div class="content-container">
-		<div class="toolbar">
-			<button id="btn-run" class="btn-standard btn-md btn-run">▶ Run</button>
-			<button id="btn-stop" class="btn-standard btn-md btn-stop">⏹ Stop</button>
-			<button id="btn-open" class="btn-standard btn-outline btn-md">📂 Open</button>
-			<button id="btn-save" class="btn-standard btn-outline btn-md">💾 Save</button>
-			<div class="examples-wrapper">
-				<button id="btn-examples" class="btn-standard btn-outline btn-md">📖 Examples</button>
-				<div id="examples-dropdown" class="examples-dropdown hidden">
-					<div class="examples-item" data-example="single-motor">Single Motor</div>
-					<div class="examples-item" data-example="double-motor">Double Motor</div>
-					<div class="examples-item" data-example="color-sensor">Color Sensor</div>
-					<div class="examples-item" data-example="controller">Controller</div>
-					<div class="examples-item" data-example="double-motor-controller">Double Motor + Controller</div>
-					<div class="examples-item" data-example="single-motor-color-sensor">Single Motor + Color Sensor
-					</div>
-				</div>
-			</div>
-			<span id="editor-status" style="color:#888; font-size:0.85rem;"></span>
-			<span id="file-name" style="font-size:0.8rem; font-style:italic;"></span>
-		</div>
+    <div class="content-container">
+        <div class="toolbar">
+            <button id="btn-run" class="btn-standard btn-md btn-run">▶ Run</button>
+            <button id="btn-stop" class="btn-standard btn-md btn-stop">⏹ Stop</button>
+            <button id="btn-open" class="btn-standard btn-outline btn-md">📂 Open</button>
+            <button id="btn-save" class="btn-standard btn-outline btn-md">💾 Save</button>
+            <div class="examples-wrapper">
+                <button id="btn-examples" class="btn-standard btn-outline btn-md">📖 Examples</button>
+                <div id="examples-dropdown" class="examples-dropdown hidden">
+                    <div class="examples-item" data-example="single-motor">Single Motor</div>
+                    <div class="examples-item" data-example="double-motor">Double Motor</div>
+                    <div class="examples-item" data-example="color-sensor">Color Sensor</div>
+                    <div class="examples-item" data-example="controller">Controller</div>
+                    <div class="examples-item" data-example="double-motor-controller">Double Motor + Controller</div>
+                    <div class="examples-item" data-example="single-motor-color-sensor">Single Motor + Color Sensor
+                    </div>
+                </div>
+            </div>
+            <span id="editor-status" style="color:#888; font-size:0.85rem;"></span>
+            <span id="file-name" style="font-size:0.8rem; font-style:italic;"></span>
+        </div>
 
-		<div class="split-container">
-			<div class="split-left">
-				<div id="editor-container"></div>
-			</div>
-			<div class="split-right">
-				<div class="panel-header">
-					<h2>Devices</h2>
-					<button id="btn-add-device" class="btn-standard btn-outline btn-sm">+ Add Device</button>
-				</div>
-				<div id="device-panel" class="output-panel">
-					<div id="device-rows"></div>
-				</div>
-				<div class="panel-header">
-					<h2>Output</h2>
-					<button id="btn-clear-stdout" class="btn-standard btn-outline btn-sm">Clear</button>
-				</div>
-				<div id="stdout" class="output-panel"></div>
-				<details id="log-container">
-					<summary>
-						<div class="panel-header">
-							<h2>System Log</h2>
-							<button id="btn-clear" class="btn-standard btn-outline btn-sm">Clear</button>
-						</div>
-					</summary>
-					<div id="log" class="output-panel"></div>
-				</details>
-			</div>
-		</div>
-	</div>
-	<div class="content-container footer">
-		<p style='color:red'>This cloned version was pulled down from <a href='https://beta.python.legoeducation.com' target=_blank>https://beta.python.legoeducation.com</a> on 2026-08-12. It is unauthorized and is in <b>no way official nor officially approved</b>.</p>
-		<p style='color:red'>LEGO, the LEGO logo, the Minifigure, LEGO Education, the LEGO Education logo, DUPLO, the SPIKE logo, MINDSTORMS and the MINDSTORMS logo are trademarks and/or copyrights of the LEGO Group, <b>which does not sponsor, authorize, or endorse this CLONED site.</b> All other trademarks and copyrights are the property of their respective owners. All rights reserved.</p>
-		<hr>
-		<p>This online LEGO® Education Python IDE is a BETA experience. Some features may change, and you may
-			occasionally run into bugs or unexpected behavior as we continue developing tools that help students build,
-			code, test, and learn with confidence.</p>
-		<p style='text-decoration: line-through;'>If you have feedback or find bugs, please report them using the <a target="_blank" rel="noopener noreferrer"
-				href="https://legoeducation.atlassian.net/servicedesk/customer/portal/3/create/33">LEGO Education
-				Support Portal</a>.</p>
-		<p>To get the full Python experience, install the LEGO Education Python package locally. Package details are
-			available on the <a target="_blank" rel="noopener noreferrer" href="https://pypi.org/project/legoeducation/">Python Package Index</a>.
-		</p>
-		<p>Documentation for the shared Python API used by the Python package and the online Python Editor is available
-			on <a target="_blank" rel="noopener noreferrer" href="https://github.com/LEGO/LEGOEducation">GitHub</a>.</p>
-		<p>This experience works with LEGO Education Science and LEGO Education Computer Science & AI products. Visit <a
-				target="_blank" rel="noopener noreferrer" href="https://LEGOEducation.com/shop">LEGOEducation.com</a> to explore compatible
-			products.</p>
-		<p>This website uses <a target="_blank" rel="noopener noreferrer" href="https://pyscript.net">PyScript</a>, an open source project
-			licensed under the <a target="_blank" rel="noopener noreferrer" href="https://github.com/pyscript/pyscript/blob/main/LICENSE">Apache
-				License 2.0</a>.</p>
-		<p>LEGO, the LEGO logo, LEGO Education, and the LEGO Education logo are trademarks of the LEGO Group. ©2026 The
-			LEGO Group. All rights reserved.</p>
-		<p>&nbsp;</p>
-		<p><a target="_blank" rel="noopener noreferrer" href="https://www.lego.com/legal/terms-of-use" style='text-decoration: line-through;'>Terms and Conditions</a> | <a
-				target="_blank" rel="noopener noreferrer" href="https://www.lego.com/legal/notices-and-policies/privacy-policy" style='text-decoration: line-through;'>Privacy Policy</a>
-		</p>
-	</div>
+        <div class="split-container">
+            <div class="split-left">
+                <div id="editor-container"></div>
+            </div>
+            <div class="split-right">
+                <div class="panel-header">
+                    <h2>Devices</h2>
+                    <button id="btn-add-device" class="btn-standard btn-outline btn-sm">+ Add Device</button>
+                </div>
+                <div id="device-panel" class="output-panel">
+                    <div id="device-rows"></div>
+                </div>
+                <div class="panel-header">
+                    <h2>Output</h2>
+                    <button id="btn-clear-stdout" class="btn-standard btn-outline btn-sm">Clear</button>
+                </div>
+                <div id="stdout" class="output-panel"></div>
+                <details id="log-container">
+                    <summary>
+                        <div class="panel-header">
+                            <h2>System Log</h2>
+                            <button id="btn-clear" class="btn-standard btn-outline btn-sm">Clear</button>
+                        </div>
+                    </summary>
+                    <div id="log" class="output-panel"></div>
+                </details>
+            </div>
+        </div>
+    </div>
+    <div class="content-container footer">
+        <p style='color:red'>This cloned version was pulled down from <a href='https://beta.python.legoeducation.com' target=_blank>https://beta.python.legoeducation.com</a> on <b>2026-08-20</b>. It is unauthorized and is in <b>no way official nor officially approved</b>.</p>
+        <p style='color:red'>LEGO, the LEGO logo, the Minifigure, LEGO Education, the LEGO Education logo, DUPLO, the SPIKE logo, MINDSTORMS and the MINDSTORMS logo are trademarks and/or copyrights of the LEGO Group, <b>which does not sponsor, authorize, or endorse this CLONED site.</b> All other trademarks and copyrights are the property of their respective owners. All rights reserved.</p>
+        <hr>
+        <p>This online LEGO® Education Python IDE is a BETA experience. Some features may change, and you may
+            occasionally run into bugs or unexpected behavior as we continue developing tools that help students build,
+            code, test, and learn with confidence.</p>
+        <p style='text-decoration: line-through;'>If you have feedback or find bugs, please report them using the <a target="_blank" rel="noopener noreferrer"
+                href="https://legoeducation.atlassian.net/servicedesk/customer/portal/3/create/33">LEGO Education
+                Support Portal</a>.</p>
+        <p>To get the full Python experience, install the LEGO Education Python package locally. Package details are
+            available on the <a target="_blank" rel="noopener noreferrer" href="https://pypi.org/project/legoeducation/">Python Package Index</a>.
+        </p>
+        <p>Documentation for the shared Python API used by the Python package and the online Python Editor is available
+            on <a target="_blank" rel="noopener noreferrer" href="https://github.com/LEGO/LEGOEducation">GitHub</a>.</p>
+        <p>This experience works with LEGO Education Science and LEGO Education Computer Science & AI products. Visit <a
+                target="_blank" rel="noopener noreferrer" href="https://LEGOEducation.com/shop">LEGOEducation.com</a> to explore compatible
+            products.</p>
+        <p>This website uses <a target="_blank" rel="noopener noreferrer" href="https://pyscript.net">PyScript</a>, an open source project
+            licensed under the <a target="_blank" rel="noopener noreferrer" href="https://github.com/pyscript/pyscript/blob/main/LICENSE">Apache
+                License 2.0</a>.</p>
+        <p>LEGO, the LEGO logo, LEGO Education, and the LEGO Education logo are trademarks of the LEGO Group. ©2026 The
+            LEGO Group. All rights reserved.</p>
+        <p>&nbsp;</p>
+        <p style='text-decoration: line-through;'><a target="_blank" rel="noopener noreferrer" href="https://www.lego.com/legal/terms-of-use">Terms and Conditions</a> | <a
+                target="_blank" rel="noopener noreferrer" href="https://www.lego.com/legal/notices-and-policies/privacy-policy">Privacy Policy</a>
+        </p>
+    </div>
 
-	<script type="py" src="./main_pyodide.py" config="./pyscript.json"></script>
+    <script type="py" src="./main_pyodide.py" config="./pyscript.json"></script>
 
-	<!-- Redirect any PyScript-injected stderr/error DOM elements to console instead -->
-	<script>
-		new MutationObserver((mutations) => {
-			for (const m of mutations) {
-				for (const node of m.addedNodes) {
-					if (node.nodeType === 1 && node.parentNode === document.body &&
-						node.tagName !== "SCRIPT" && node.tagName !== "LINK" &&
-						node.tagName !== "STYLE" && !node.id && !node.className.includes("split") &&
-						!node.className.includes("toolbar") && !node.className.includes("status")) {
-						const text = node.textContent.trim();
-						if (text) console.warn("[PyScript stderr]", text);
-						node.remove();
-					}
-				}
-			}
-		}).observe(document.body, { childList: true });
-	</script>
+    <!-- Redirect any PyScript-injected stderr/error DOM elements to console instead -->
+    <script>
+        new MutationObserver((mutations) => {
+            for (const m of mutations) {
+                for (const node of m.addedNodes) {
+                    if (node.nodeType === 1 && node.parentNode === document.body &&
+                        node.tagName !== "SCRIPT" && node.tagName !== "LINK" &&
+                        node.tagName !== "STYLE" && !node.id && !node.className.includes("split") &&
+                        !node.className.includes("toolbar") && !node.className.includes("status")) {
+                        const text = node.textContent.trim();
+                        if (text) console.warn("[PyScript stderr]", text);
+                        node.remove();
+                    }
+                }
+            }
+        }).observe(document.body, { childList: true });
+    </script>
 
-	<!-- Import map to deduplicate shared CodeMirror dependencies -->
-	<script type="importmap">
-	{
-		"imports": {
-			"@codemirror/state": "https://esm.sh/@codemirror/state@6.5.0",
-			"@codemirror/view": "https://esm.sh/@codemirror/view@6.35.0?external=@codemirror/state",
-			"@codemirror/language": "https://esm.sh/@codemirror/language@6.10.8?external=@codemirror/state,@codemirror/view",
-			"@codemirror/commands": "https://esm.sh/@codemirror/commands@6.7.1?external=@codemirror/state,@codemirror/view,@codemirror/language",
-			"@codemirror/autocomplete": "https://esm.sh/@codemirror/autocomplete@6.18.4?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/commands",
-			"@codemirror/search": "https://esm.sh/@codemirror/search@6.5.8?external=@codemirror/state,@codemirror/view",
-			"@codemirror/lint": "https://esm.sh/@codemirror/lint@6.8.4?external=@codemirror/state,@codemirror/view",
-			"codemirror": "https://esm.sh/codemirror@6.0.1?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/commands,@codemirror/autocomplete,@codemirror/search,@codemirror/lint",
-			"@codemirror/lang-python": "https://esm.sh/@codemirror/lang-python@6.1.6?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/autocomplete",
-			"@codemirror/theme-one-dark": "https://esm.sh/@codemirror/theme-one-dark@6.1.2?external=@codemirror/state,@codemirror/view",
-			"@lezer/highlight": "https://esm.sh/@lezer/highlight@1.2.1"
-		}
-	}
-	</script>
+    <!-- Import map to deduplicate shared CodeMirror dependencies -->
+    <script type="importmap">
+    {
+        "imports": {
+            "@codemirror/state": "https://esm.sh/@codemirror/state@6.5.0",
+            "@codemirror/view": "https://esm.sh/@codemirror/view@6.35.0?external=@codemirror/state",
+            "@codemirror/language": "https://esm.sh/@codemirror/language@6.10.8?external=@codemirror/state,@codemirror/view",
+            "@codemirror/commands": "https://esm.sh/@codemirror/commands@6.7.1?external=@codemirror/state,@codemirror/view,@codemirror/language",
+            "@codemirror/autocomplete": "https://esm.sh/@codemirror/autocomplete@6.18.4?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/commands",
+            "@codemirror/search": "https://esm.sh/@codemirror/search@6.5.8?external=@codemirror/state,@codemirror/view",
+            "@codemirror/lint": "https://esm.sh/@codemirror/lint@6.8.4?external=@codemirror/state,@codemirror/view",
+            "codemirror": "https://esm.sh/codemirror@6.0.1?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/commands,@codemirror/autocomplete,@codemirror/search,@codemirror/lint",
+            "@codemirror/lang-python": "https://esm.sh/@codemirror/lang-python@6.1.6?external=@codemirror/state,@codemirror/view,@codemirror/language,@codemirror/autocomplete",
+            "@codemirror/theme-one-dark": "https://esm.sh/@codemirror/theme-one-dark@6.1.2?external=@codemirror/state,@codemirror/view",
+            "@lezer/highlight": "https://esm.sh/@lezer/highlight@1.2.1"
+        }
+    }
+    </script>
 
-	<!-- CodeMirror 6 editor setup + app logic -->
-	<script type="module">
-		import { EditorView, basicSetup } from "codemirror";
-		import { python } from "@codemirror/lang-python";
-		import { keymap, showTooltip } from "@codemirror/view";
-		import { EditorState, StateField } from "@codemirror/state";
-		import { indentWithTab } from "@codemirror/commands";
-		import { oneDark } from "@codemirror/theme-one-dark";
-		import { autocompletion, startCompletion, acceptCompletion } from "@codemirror/autocomplete";
-		import { HighlightStyle, syntaxHighlighting, syntaxTree, indentUnit } from "@codemirror/language";
-		import { tags } from "@lezer/highlight";
+    <!-- CodeMirror 6 editor setup + app logic -->
+    <script type="module">
+        import { EditorView, basicSetup } from "codemirror";
+        import { python } from "@codemirror/lang-python";
+        import { keymap, showTooltip } from "@codemirror/view";
+        import { EditorState, StateField } from "@codemirror/state";
+        import { indentWithTab } from "@codemirror/commands";
+        import { oneDark } from "@codemirror/theme-one-dark";
+        import { autocompletion, startCompletion, acceptCompletion } from "@codemirror/autocomplete";
+        import { HighlightStyle, syntaxHighlighting, syntaxTree, indentUnit } from "@codemirror/language";
+        import { tags } from "@lezer/highlight";
 
-		// LEGO-themed syntax highlight overrides
-		const legoHighlight = HighlightStyle.define([
-			{ tag: tags.function(tags.definition(tags.variableName)), color: "#f5c518" },  // function defs → gold
-			{ tag: tags.function(tags.variableName), color: "#ffd866" },                   // function calls → light gold
-			{ tag: tags.keyword, color: "#ff6b6b" },                                       // keywords → coral red
-			{ tag: tags.string, color: "#a8e6a3" },                                        // strings → light green
-			{ tag: tags.comment, color: "#7a7a9a", fontStyle: "italic" },                  // comments → muted purple-grey
-			{ tag: tags.number, color: "#d4a0ff" },                                        // numbers → lavender
-			{ tag: tags.className, color: "#f5c518" },                                     // class names → gold
-			{ tag: tags.propertyName, color: "#88ccff" },                                  // properties → light blue
-			{ tag: tags.operator, color: "#e0e0e0" },                                      // operators → white
-			{ tag: tags.bool, color: "#d4a0ff" },                                          // booleans → lavender
-		]);
+        // LEGO-themed syntax highlight overrides
+        const legoHighlight = HighlightStyle.define([
+            { tag: tags.function(tags.definition(tags.variableName)), color: "#f5c518" },  // function defs → gold
+            { tag: tags.function(tags.variableName), color: "#ffd866" },                   // function calls → light gold
+            { tag: tags.keyword, color: "#ff6b6b" },                                       // keywords → coral red
+            { tag: tags.string, color: "#a8e6a3" },                                        // strings → light green
+            { tag: tags.comment, color: "#7a7a9a", fontStyle: "italic" },                  // comments → muted purple-grey
+            { tag: tags.number, color: "#d4a0ff" },                                        // numbers → lavender
+            { tag: tags.className, color: "#f5c518" },                                     // class names → gold
+            { tag: tags.propertyName, color: "#88ccff" },                                  // properties → light blue
+            { tag: tags.operator, color: "#e0e0e0" },                                      // operators → white
+            { tag: tags.bool, color: "#d4a0ff" },                                          // booleans → lavender
+        ]);
 
-		// Default editor content
-		const defaultCode = `import legoeducation as le
+        // Default editor content
+        const defaultCode = `import legoeducation as le
 import time
 
 # Callback for monitoring position
 def notification_callback(data):
-	parsed_items = le.device_notification_parser(data)
-	for parsed_item in parsed_items:
-		if isinstance(parsed_item, le.MotorNotification):
-			print(f"Position: {parsed_item.position}")
+    parsed_items = le.device_notification_parser(data)
+    for parsed_item in parsed_items:
+        if isinstance(parsed_item, le.MotorNotification):
+            print(f"Position: {parsed_item.position}")
 
 # Connect to the Single Motor
 singlemotor = le.SingleMotor()
@@ -195,434 +194,434 @@ singlemotor.set_notification_callback(notification_callback) # set callback
 
 # Check connection
 if not singlemotor.connected:
-	print('Error connecting to Single Motor.')
-	exit(1) # error connecting
+    print('Error connecting to Single Motor.')
+    exit(1) # error connecting
 
 # Wait for 5 seconds (while data is streaming via callback)
 time.sleep(5)
 exit(0)`;
 
-		// Python autocomplete source — uses PyodideConsole.complete() with type inference
-		// We do our own case-insensitive filtering and return filter:false so CodeMirror
-		// doesn't apply its own (case-sensitive) filter on top.
-		function pythonCompletionSource(context) {
-			const completeFn = globalThis._pyEditorComplete;
-			if (!completeFn) return null;
+        // Python autocomplete source — uses PyodideConsole.complete() with type inference
+        // We do our own case-insensitive filtering and return filter:false so CodeMirror
+        // doesn't apply its own (case-sensitive) filter on top.
+        function pythonCompletionSource(context) {
+            const completeFn = globalThis._pyEditorComplete;
+            if (!completeFn) return null;
 
-			// Check for dot-access completion (e.g. "obj.meth")
-			const dotMatch = context.matchBefore(/\.\w*/);
-			if (dotMatch) {
-				try {
-					const line = context.state.doc.lineAt(dotMatch.from);
-					const textUpToDot = line.text.slice(0, dotMatch.from - line.from + 1);
-					const partial = context.state.doc.sliceString(dotMatch.from + 1, context.pos);
+            // Check for dot-access completion (e.g. "obj.meth")
+            const dotMatch = context.matchBefore(/\.\w*/);
+            if (dotMatch) {
+                try {
+                    const line = context.state.doc.lineAt(dotMatch.from);
+                    const textUpToDot = line.text.slice(0, dotMatch.from - line.from + 1);
+                    const partial = context.state.doc.sliceString(dotMatch.from + 1, context.pos);
 
-					const editorCode = context.state.doc.toString();
-					const jsonStr = completeFn(textUpToDot, editorCode);
-					if (!jsonStr) return null;
-					const { completions } = JSON.parse(jsonStr);
-					if (!completions || completions.length === 0) return null;
+                    const editorCode = context.state.doc.toString();
+                    const jsonStr = completeFn(textUpToDot, editorCode);
+                    if (!jsonStr) return null;
+                    const { completions } = JSON.parse(jsonStr);
+                    if (!completions || completions.length === 0) return null;
 
-					const lowerPartial = partial.toLowerCase();
-					const filtered = lowerPartial
-						? completions.filter(c => {
-							const attr = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
-							return attr.toLowerCase().startsWith(lowerPartial);
-						})
-						: completions;
+                    const lowerPartial = partial.toLowerCase();
+                    const filtered = lowerPartial
+                        ? completions.filter(c => {
+                            const attr = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
+                            return attr.toLowerCase().startsWith(lowerPartial);
+                        })
+                        : completions;
 
-					if (filtered.length === 0) return null;
+                    if (filtered.length === 0) return null;
 
-					const options = filtered.map(c => {
-						const attr = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
-						const isCallable = attr.endsWith("(");
-						return {
-							label: attr,
-							type: isCallable ? "function" : "variable",
-						};
-					});
+                    const options = filtered.map(c => {
+                        const attr = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
+                        const isCallable = attr.endsWith("(");
+                        return {
+                            label: attr,
+                            type: isCallable ? "function" : "variable",
+                        };
+                    });
 
-					return { from: dotMatch.from + 1, options, filter: false };
-				} catch (e) {
-					return null;
-				}
-			}
+                    return { from: dotMatch.from + 1, options, filter: false };
+                } catch (e) {
+                    return null;
+                }
+            }
 
-			// Check for bare identifier completion (e.g. "sing" → "singleMotor")
-			const wordMatch = context.matchBefore(/\w+/);
-			if (!wordMatch && !context.explicit) return null;
-			if (!wordMatch) return null;
+            // Check for bare identifier completion (e.g. "sing" → "singleMotor")
+            const wordMatch = context.matchBefore(/\w+/);
+            if (!wordMatch && !context.explicit) return null;
+            if (!wordMatch) return null;
 
-			try {
-				const partial = context.state.doc.sliceString(wordMatch.from, context.pos);
-				const editorCode = context.state.doc.toString();
-				// Ask Python to complete the partial text directly
-				const jsonStr = completeFn(partial, editorCode);
-				if (!jsonStr) return null;
-				const { completions } = JSON.parse(jsonStr);
-				if (!completions || completions.length === 0) return null;
+            try {
+                const partial = context.state.doc.sliceString(wordMatch.from, context.pos);
+                const editorCode = context.state.doc.toString();
+                // Ask Python to complete the partial text directly
+                const jsonStr = completeFn(partial, editorCode);
+                if (!jsonStr) return null;
+                const { completions } = JSON.parse(jsonStr);
+                if (!completions || completions.length === 0) return null;
 
-				// Filter case-insensitively and strip any prefix
-				const lowerPartial = partial.toLowerCase();
-				const filtered = completions.filter(c => {
-					const name = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
-					return name.toLowerCase().startsWith(lowerPartial) && name !== partial;
-				});
+                // Filter case-insensitively and strip any prefix
+                const lowerPartial = partial.toLowerCase();
+                const filtered = completions.filter(c => {
+                    const name = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
+                    return name.toLowerCase().startsWith(lowerPartial) && name !== partial;
+                });
 
-				if (filtered.length === 0) return null;
+                if (filtered.length === 0) return null;
 
-				const options = filtered.map(c => {
-					const name = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
-					const isCallable = name.endsWith("(");
-					return {
-						label: name,
-						type: isCallable ? "function" : "variable",
-					};
-				});
+                const options = filtered.map(c => {
+                    const name = c.includes(".") ? c.slice(c.lastIndexOf(".") + 1) : c;
+                    const isCallable = name.endsWith("(");
+                    return {
+                        label: name,
+                        type: isCallable ? "function" : "variable",
+                    };
+                });
 
-				return { from: wordMatch.from, options, filter: false };
-			} catch (e) {
-				return null;
-			}
-		}
+                return { from: wordMatch.from, options, filter: false };
+            } catch (e) {
+                return null;
+            }
+        }
 
-		// Re-trigger completion on deletion if cursor is after a dot
-		const retriggerOnDelete = EditorView.updateListener.of(update => {
-			if (!update.docChanged) return;
-			// Check if any transaction is a deletion (shorter doc)
-			const isDelete = update.transactions.some(tr =>
-				tr.changes.newLength < tr.changes.length
-			);
-			if (!isDelete) return;
-			const pos = update.state.selection.main.head;
-			const line = update.state.doc.lineAt(pos);
-			const textBefore = line.text.slice(0, pos - line.from);
-			if (/\.\w*$/.test(textBefore)) {
-				startCompletion(update.view);
-			}
-		});
+        // Re-trigger completion on deletion if cursor is after a dot
+        const retriggerOnDelete = EditorView.updateListener.of(update => {
+            if (!update.docChanged) return;
+            // Check if any transaction is a deletion (shorter doc)
+            const isDelete = update.transactions.some(tr =>
+                tr.changes.newLength < tr.changes.length
+            );
+            if (!isDelete) return;
+            const pos = update.state.selection.main.head;
+            const line = update.state.doc.lineAt(pos);
+            const textBefore = line.text.slice(0, pos - line.from);
+            if (/\.\w*$/.test(textBefore)) {
+                startCompletion(update.view);
+            }
+        });
 
-		// Trigger completion on dot
-		function dotTrigger(view) {
-			// Insert the dot; activateOnTyping will trigger completion automatically
-			view.dispatch(view.state.replaceSelection("."));
-			startCompletion(view);
-			return true;
-		}
+        // Trigger completion on dot
+        function dotTrigger(view) {
+            // Insert the dot; activateOnTyping will trigger completion automatically
+            view.dispatch(view.state.replaceSelection("."));
+            startCompletion(view);
+            return true;
+        }
 
-		// Run on Shift+Enter
-		function runCode(view) {
-			document.getElementById("btn-run").click();
-			return true;
-		}
+        // Run on Shift+Enter
+        function runCode(view) {
+            document.getElementById("btn-run").click();
+            return true;
+        }
 
-		// Custom TAB: accept completion if popup open, else indent
-		function tabHandler(view) {
-			// If completion popup is open, accept the selection
-			if (acceptCompletion(view)) return true;
-			// If cursor is after a word (2+ chars) and completer is ready, trigger completion
-			const pos = view.state.selection.main.head;
-			const line = view.state.doc.lineAt(pos);
-			const textBefore = line.text.slice(0, pos - line.from);
-			if (/\w{2,}$/.test(textBefore) && globalThis._pyEditorComplete) {
-				startCompletion(view);
-				return true;
-			}
-			// Otherwise fall through to default indent behavior
-			return false;
-		}
+        // Custom TAB: accept completion if popup open, else indent
+        function tabHandler(view) {
+            // If completion popup is open, accept the selection
+            if (acceptCompletion(view)) return true;
+            // If cursor is after a word (2+ chars) and completer is ready, trigger completion
+            const pos = view.state.selection.main.head;
+            const line = view.state.doc.lineAt(pos);
+            const textBefore = line.text.slice(0, pos - line.from);
+            if (/\w{2,}$/.test(textBefore) && globalThis._pyEditorComplete) {
+                startCompletion(view);
+                return true;
+            }
+            // Otherwise fall through to default indent behavior
+            return false;
+        }
 
-		// ── Signature Help Tooltip ──
-		function getCallContext(state, pos) {
-			// Use CodeMirror's syntax tree to find the enclosing function call
-			// and count arguments, skipping strings/comments automatically.
-			const tree = syntaxTree(state);
-			const doc = state.doc;
-			const text = doc.sliceString(0, pos);
+        // ── Signature Help Tooltip ──
+        function getCallContext(state, pos) {
+            // Use CodeMirror's syntax tree to find the enclosing function call
+            // and count arguments, skipping strings/comments automatically.
+            const tree = syntaxTree(state);
+            const doc = state.doc;
+            const text = doc.sliceString(0, pos);
 
-			// Helper: check if a position is inside a string/comment by walking up the tree
-			function isInsideStringOrComment(offset) {
-				let node = tree.resolveInner(offset, 1);
-				while (node) {
-					const name = node.type.name;
-					if (name === "String" || name === "FormatString" ||
-						name === "Comment" || name === "string_content" ||
-						name === "escape_sequence") {
-						return true;
-					}
-					// Stop at the top-level, code boundaries, or interpolation (f-string code)
-					if (name === "Script" || name === "ArgList" || name === "CallExpression" || name === "interpolation") break;
-					node = node.parent;
-				}
-				return false;
-			}
+            // Helper: check if a position is inside a string/comment by walking up the tree
+            function isInsideStringOrComment(offset) {
+                let node = tree.resolveInner(offset, 1);
+                while (node) {
+                    const name = node.type.name;
+                    if (name === "String" || name === "FormatString" ||
+                        name === "Comment" || name === "string_content" ||
+                        name === "escape_sequence") {
+                        return true;
+                    }
+                    // Stop at the top-level, code boundaries, or interpolation (f-string code)
+                    if (name === "Script" || name === "ArgList" || name === "CallExpression" || name === "interpolation") break;
+                    node = node.parent;
+                }
+                return false;
+            }
 
-			let depth = 0;
-			let argIndex = 0;
-			let funcEnd = -1;
+            let depth = 0;
+            let argIndex = 0;
+            let funcEnd = -1;
 
-			for (let i = text.length - 1; i >= 0; i--) {
-				// Skip any position that the parser identifies as string/comment
-				if (isInsideStringOrComment(i)) continue;
+            for (let i = text.length - 1; i >= 0; i--) {
+                // Skip any position that the parser identifies as string/comment
+                if (isInsideStringOrComment(i)) continue;
 
-				const ch = text[i];
-				if (ch === ')') depth++;
-				else if (ch === '(') {
-					if (depth === 0) {
-						funcEnd = i;
-						break;
-					}
-					depth--;
-				}
-				else if (ch === ',' && depth === 0) argIndex++;
-			}
-			if (funcEnd < 0) return null;
+                const ch = text[i];
+                if (ch === ')') depth++;
+                else if (ch === '(') {
+                    if (depth === 0) {
+                        funcEnd = i;
+                        break;
+                    }
+                    depth--;
+                }
+                else if (ch === ',' && depth === 0) argIndex++;
+            }
+            if (funcEnd < 0) return null;
 
-			// Extract function expression before the '('
-			let funcStart = funcEnd - 1;
-			while (funcStart >= 0 && /[\w.]/.test(text[funcStart])) funcStart--;
-			funcStart++;
-			const funcExpr = text.slice(funcStart, funcEnd).trim();
-			if (!funcExpr || /^\d/.test(funcExpr)) return null;
+            // Extract function expression before the '('
+            let funcStart = funcEnd - 1;
+            while (funcStart >= 0 && /[\w.]/.test(text[funcStart])) funcStart--;
+            funcStart++;
+            const funcExpr = text.slice(funcStart, funcEnd).trim();
+            if (!funcExpr || /^\d/.test(funcExpr)) return null;
 
-			return { funcExpr, argIndex, from: funcEnd };
-		}
+            return { funcExpr, argIndex, from: funcEnd };
+        }
 
-		let sigCache = { expr: null, result: null };
+        let sigCache = { expr: null, result: null };
 
-		const signatureTooltipField = StateField.define({
-			create: () => null,
-			update(value, tr) {
-				if (!tr.docChanged && !tr.selection) return value;
-				const state = tr.state;
-				const pos = state.selection.main.head;
-				const ctx = getCallContext(state, pos);
-				if (!ctx) return null;
+        const signatureTooltipField = StateField.define({
+            create: () => null,
+            update(value, tr) {
+                if (!tr.docChanged && !tr.selection) return value;
+                const state = tr.state;
+                const pos = state.selection.main.head;
+                const ctx = getCallContext(state, pos);
+                if (!ctx) return null;
 
-				const sigFn = globalThis._pyGetSignature;
-				if (!sigFn) return null;
+                const sigFn = globalThis._pyGetSignature;
+                if (!sigFn) return null;
 
-				// Use cache to avoid calling Python on every keystroke for same function
-				if (sigCache.expr !== ctx.funcExpr) {
-					const editorCode = state.doc.toString();
-					const result = sigFn(ctx.funcExpr, editorCode);
-					sigCache = { expr: ctx.funcExpr, result: result ? JSON.parse(result) : null };
-				}
+                // Use cache to avoid calling Python on every keystroke for same function
+                if (sigCache.expr !== ctx.funcExpr) {
+                    const editorCode = state.doc.toString();
+                    const result = sigFn(ctx.funcExpr, editorCode);
+                    sigCache = { expr: ctx.funcExpr, result: result ? JSON.parse(result) : null };
+                }
 
-				if (!sigCache.result) return null;
-				return { pos: ctx.from, data: sigCache.result, argIndex: ctx.argIndex };
-			},
-			provide: f => showTooltip.computeN([f], state => {
-				const val = state.field(f);
-				if (!val) return [];
-				return [{
-					pos: val.pos,
-					above: true,
-					create() {
-						const { params, doc } = val.data;
-						const argIndex = val.argIndex;
-						const dom = document.createElement("div");
-						dom.className = "sig-tooltip";
-						dom.style.cssText = "background:#2a2a4a;border:1px solid #555;border-radius:6px;padding:0.4rem 0.6rem;font-family:'Menlo','Consolas',monospace;font-size:0.8rem;max-width:450px;color:#e0e0e0;";
+                if (!sigCache.result) return null;
+                return { pos: ctx.from, data: sigCache.result, argIndex: ctx.argIndex };
+            },
+            provide: f => showTooltip.computeN([f], state => {
+                const val = state.field(f);
+                if (!val) return [];
+                return [{
+                    pos: val.pos,
+                    above: true,
+                    create() {
+                        const { params, doc } = val.data;
+                        const argIndex = val.argIndex;
+                        const dom = document.createElement("div");
+                        dom.className = "sig-tooltip";
+                        dom.style.cssText = "background:#2a2a4a;border:1px solid #555;border-radius:6px;padding:0.4rem 0.6rem;font-family:'Menlo','Consolas',monospace;font-size:0.8rem;max-width:450px;color:#e0e0e0;";
 
-						// Build signature line
-						const sigLine = document.createElement("div");
-						sigLine.style.marginBottom = doc ? "0.3rem" : "0";
-						const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-						let paramStrs = [];
-						let kwSepAdded = false;
-						params.forEach((p, i) => {
-							let str = esc(p.name);
-							if (p.kwonly && !kwSepAdded) {
-								paramStrs.push("*");
-								kwSepAdded = true;
-							}
-							if (p.default) str += `=${esc(p.default)}`;
-							if (i === argIndex) {
-								str = `<b style="color:#f5c518">${str}</b>`;
-							}
-							paramStrs.push(str);
-						});
-						sigLine.innerHTML = `(${paramStrs.join(", ")})`;
-						dom.appendChild(sigLine);
+                        // Build signature line
+                        const sigLine = document.createElement("div");
+                        sigLine.style.marginBottom = doc ? "0.3rem" : "0";
+                        const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                        let paramStrs = [];
+                        let kwSepAdded = false;
+                        params.forEach((p, i) => {
+                            let str = esc(p.name);
+                            if (p.kwonly && !kwSepAdded) {
+                                paramStrs.push("*");
+                                kwSepAdded = true;
+                            }
+                            if (p.default) str += `=${esc(p.default)}`;
+                            if (i === argIndex) {
+                                str = `<b style="color:#f5c518">${str}</b>`;
+                            }
+                            paramStrs.push(str);
+                        });
+                        sigLine.innerHTML = `(${paramStrs.join(", ")})`;
+                        dom.appendChild(sigLine);
 
-						// Docstring
-						if (doc) {
-							const docEl = document.createElement("div");
-							docEl.style.cssText = "color:#aaa;font-size:0.75rem;white-space:pre-wrap;max-height:4rem;overflow-y:auto;";
-							docEl.textContent = doc;
-							dom.appendChild(docEl);
-						}
-						return { dom };
-					}
-				}];
-			})
-		});
+                        // Docstring
+                        if (doc) {
+                            const docEl = document.createElement("div");
+                            docEl.style.cssText = "color:#aaa;font-size:0.75rem;white-space:pre-wrap;max-height:4rem;overflow-y:auto;";
+                            docEl.textContent = doc;
+                            dom.appendChild(docEl);
+                        }
+                        return { dom };
+                    }
+                }];
+            })
+        });
 
-		// Create editor
-		const editor = new EditorView({
-			state: EditorState.create({
-				doc: defaultCode,
-				extensions: [
-					basicSetup,
-					python(),
-					indentUnit.of("    "),
-					oneDark,
-					syntaxHighlighting(legoHighlight),
-					autocompletion({
-						override: [pythonCompletionSource],
-						activateOnTyping: true,
-						activateOnTypingDelay: 0,
-					}),
-					retriggerOnDelete,
-					signatureTooltipField,
-					keymap.of([
-						{ key: "Shift-Enter", run: runCode },
-						{ key: "Tab", run: tabHandler },
-						{ key: "Ctrl-Space", run: startCompletion },
-						{ key: ".", run: dotTrigger },
-					]),
-					keymap.of([indentWithTab]),
-					EditorView.theme({
-						"&": { height: "100%", fontSize: "0.85rem" },
-						".cm-scroller": { fontFamily: "'Menlo', 'Consolas', monospace" },
-					}),
-				],
-			}),
-			parent: document.getElementById("editor-container"),
-		});
+        // Create editor
+        const editor = new EditorView({
+            state: EditorState.create({
+                doc: defaultCode,
+                extensions: [
+                    basicSetup,
+                    python(),
+                    indentUnit.of("    "),
+                    oneDark,
+                    syntaxHighlighting(legoHighlight),
+                    autocompletion({
+                        override: [pythonCompletionSource],
+                        activateOnTyping: true,
+                        activateOnTypingDelay: 0,
+                    }),
+                    retriggerOnDelete,
+                    signatureTooltipField,
+                    keymap.of([
+                        { key: "Shift-Enter", run: runCode },
+                        { key: "Tab", run: tabHandler },
+                        { key: "Ctrl-Space", run: startCompletion },
+                        { key: ".", run: dotTrigger },
+                    ]),
+                    keymap.of([indentWithTab]),
+                    EditorView.theme({
+                        "&": { height: "100%", fontSize: "0.85rem" },
+                        ".cm-scroller": { fontFamily: "'Menlo', 'Consolas', monospace" },
+                    }),
+                ],
+            }),
+            parent: document.getElementById("editor-container"),
+        });
 
-		// Expose editor to globalThis so Python can read its content
-		globalThis._cmEditor = editor;
+        // Expose editor to globalThis so Python can read its content
+        globalThis._cmEditor = editor;
 
-		// ── Stop button ──
-		document.getElementById("btn-stop").addEventListener("click", () => {
-			const running = document.getElementById("btn-run").disabled;
-			if (running) {
-				// Signal stop — the sys.settrace hook and interruptible sleep
-				// check this flag directly and raise KeyboardInterrupt in user code.
-				globalThis._pyStopRequested = true;
-				const st = document.getElementById("editor-status");
-				st.textContent = "🛑 Interrupting…";
-				st.style.color = "#cc4444";
-				// Set the interrupt buffer immediately so Python raises
-				// KeyboardInterrupt at the next bytecode boundary.
-				const flag = globalThis._interruptFlag;
-				if (flag) {
-					Atomics.store(flag, 0, 2);
-				}
-				// Fallback: if the BLE device never responds, cancel pending
-				// futures after 500ms so the interrupt can propagate.
-				setTimeout(() => {
-					if (!globalThis._pyStopRequested) return;
-					const cancel = globalThis._pyCancelPendingFutures;
-					if (cancel) {
-						try { cancel(); } catch (e) { console.warn("Cancel futures error:", e); }
-					}
-				}, 500);
-			} else {
-				// Not running — disconnect via async Python call
-				const disconnect = globalThis._pyDisconnectAllAsync;
-				if (disconnect) {
-					disconnect().catch(e => console.warn("Disconnect error:", e));
-				}
-			}
-		});
+        // ── Stop button ──
+        document.getElementById("btn-stop").addEventListener("click", () => {
+            const running = document.getElementById("btn-run").disabled;
+            if (running) {
+                // Signal stop — the sys.settrace hook and interruptible sleep
+                // check this flag directly and raise KeyboardInterrupt in user code.
+                globalThis._pyStopRequested = true;
+                const st = document.getElementById("editor-status");
+                st.textContent = "🛑 Interrupting…";
+                st.style.color = "#cc4444";
+                // Set the interrupt buffer immediately so Python raises
+                // KeyboardInterrupt at the next bytecode boundary.
+                const flag = globalThis._interruptFlag;
+                if (flag) {
+                    Atomics.store(flag, 0, 2);
+                }
+                // Fallback: if the BLE device never responds, cancel pending
+                // futures after 500ms so the interrupt can propagate.
+                setTimeout(() => {
+                    if (!globalThis._pyStopRequested) return;
+                    const cancel = globalThis._pyCancelPendingFutures;
+                    if (cancel) {
+                        try { cancel(); } catch (e) { console.warn("Cancel futures error:", e); }
+                    }
+                }, 500);
+            } else {
+                // Not running — disconnect via async Python call
+                const disconnect = globalThis._pyDisconnectAllAsync;
+                if (disconnect) {
+                    disconnect().catch(e => console.warn("Disconnect error:", e));
+                }
+            }
+        });
 
-		// ── File handling ──
-		let fileHandle = null;
+        // ── File handling ──
+        let fileHandle = null;
 
-		function setFileName(name) {
-			document.getElementById("file-name").textContent = name ? `— ${name}` : "";
-		}
+        function setFileName(name) {
+            document.getElementById("file-name").textContent = name ? `— ${name}` : "";
+        }
 
-		function setEditorContent(text) {
-			editor.dispatch({
-				changes: { from: 0, to: editor.state.doc.length, insert: text }
-			});
-		}
+        function setEditorContent(text) {
+            editor.dispatch({
+                changes: { from: 0, to: editor.state.doc.length, insert: text }
+            });
+        }
 
-		document.getElementById("btn-open").addEventListener("click", async () => {
-			try {
-				if (window.showOpenFilePicker) {
-					const [handle] = await window.showOpenFilePicker({
-						types: [{ description: "Python files", accept: { "text/plain": [".py"] } }],
-						multiple: false
-					});
-					fileHandle = handle;
-					const file = await handle.getFile();
-					const text = await file.text();
-					setEditorContent(text);
-					setFileName(file.name);
-					markAsSaved();
-				} else {
-					const input = document.createElement("input");
-					input.type = "file";
-					input.accept = ".py,text/plain";
-					input.onchange = async () => {
-						const file = input.files[0];
-						if (!file) return;
-						const text = await file.text();
-						setEditorContent(text);
-						setFileName(file.name);
-						markAsSaved();
-						fileHandle = null;
-					};
-					input.click();
-				}
-			} catch (e) {
-				if (e.name !== "AbortError") console.error("Open failed:", e);
-			}
-		});
+        document.getElementById("btn-open").addEventListener("click", async () => {
+            try {
+                if (window.showOpenFilePicker) {
+                    const [handle] = await window.showOpenFilePicker({
+                        types: [{ description: "Python files", accept: { "text/plain": [".py"] } }],
+                        multiple: false
+                    });
+                    fileHandle = handle;
+                    const file = await handle.getFile();
+                    const text = await file.text();
+                    setEditorContent(text);
+                    setFileName(file.name);
+                    markAsSaved();
+                } else {
+                    const input = document.createElement("input");
+                    input.type = "file";
+                    input.accept = ".py,text/plain";
+                    input.onchange = async () => {
+                        const file = input.files[0];
+                        if (!file) return;
+                        const text = await file.text();
+                        setEditorContent(text);
+                        setFileName(file.name);
+                        markAsSaved();
+                        fileHandle = null;
+                    };
+                    input.click();
+                }
+            } catch (e) {
+                if (e.name !== "AbortError") console.error("Open failed:", e);
+            }
+        });
 
-		document.getElementById("btn-save").addEventListener("click", async () => {
-			const content = editor.state.doc.toString();
-			try {
-				if (window.showSaveFilePicker) {
-					if (!fileHandle) {
-						fileHandle = await window.showSaveFilePicker({
-							suggestedName: "main.py",
-							types: [{ description: "Python files", accept: { "text/plain": [".py"] } }]
-						});
-					}
-					const writable = await fileHandle.createWritable();
-					await writable.write(content);
-					await writable.close();
-					setFileName(fileHandle.name);
-					markAsSaved();
-					const st = document.getElementById("editor-status");
-					st.textContent = "💾 Saved";
-					st.style.color = "#44cc44";
-				} else {
-					const blob = new Blob([content], { type: "text/plain" });
-					const url = URL.createObjectURL(blob);
-					const a = document.createElement("a");
-					a.href = url;
-					a.download = "main.py";
-					a.click();
-					URL.revokeObjectURL(url);
-					markAsSaved();
-				}
-			} catch (e) {
-				if (e.name !== "AbortError") console.error("Save failed:", e);
-			}
-		});
+        document.getElementById("btn-save").addEventListener("click", async () => {
+            const content = editor.state.doc.toString();
+            try {
+                if (window.showSaveFilePicker) {
+                    if (!fileHandle) {
+                        fileHandle = await window.showSaveFilePicker({
+                            suggestedName: "main.py",
+                            types: [{ description: "Python files", accept: { "text/plain": [".py"] } }]
+                        });
+                    }
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    setFileName(fileHandle.name);
+                    markAsSaved();
+                    const st = document.getElementById("editor-status");
+                    st.textContent = "💾 Saved";
+                    st.style.color = "#44cc44";
+                } else {
+                    const blob = new Blob([content], { type: "text/plain" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "main.py";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    markAsSaved();
+                }
+            } catch (e) {
+                if (e.name !== "AbortError") console.error("Save failed:", e);
+            }
+        });
 
-		// Keyboard shortcuts
-		document.addEventListener("keydown", (e) => {
-			if ((e.ctrlKey || e.metaKey) && e.key === "s") {
-				e.preventDefault();
-				document.getElementById("btn-save").click();
-			}
-			if ((e.ctrlKey || e.metaKey) && e.key === "o") {
-				e.preventDefault();
-				document.getElementById("btn-open").click();
-			}
-		});
+        // Keyboard shortcuts
+        document.addEventListener("keydown", (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+                e.preventDefault();
+                document.getElementById("btn-save").click();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === "o") {
+                e.preventDefault();
+                document.getElementById("btn-open").click();
+            }
+        });
 
-		// ── Examples dropdown ──
-		const examples = {
-			"single-motor": `import legoeducation as le
+        // ── Examples dropdown ──
+        const examples = {
+            "single-motor": `import legoeducation as le
 
 # Connect to the Single Motor
 singlemotor = le.SingleMotor()
@@ -630,14 +629,14 @@ singlemotor.connect()
 
 # Check connection
 if not singlemotor.connected:
-	print('Error connecting to Single Motor.')
-	exit(1)
+    print('Error connecting to Single Motor.')
+    exit(1)
 
 # Move single motor for 180-degrees
 singlemotor.motor_run_for_degrees(180)
 exit(0)`,
 
-			"double-motor": `import legoeducation as le
+            "double-motor": `import legoeducation as le
 
 # Connect to the Double Motor
 doublemotor = le.DoubleMotor()
@@ -645,14 +644,14 @@ doublemotor.connect()
 
 # Check connection
 if not doublemotor.connected:
-	print('Error connecting to Double Motor.')
-	exit(1)
+    print('Error connecting to Double Motor.')
+    exit(1)
 
 # Drive forward for 180-degrees
 doublemotor.movement_move_for_degrees(180)
 exit(0)`,
 
-			"color-sensor": `import legoeducation as le
+            "color-sensor": `import legoeducation as le
 import time
 
 # Connect to the Color Sensor
@@ -661,16 +660,16 @@ colorsensor.connect()
 
 # Check connection
 if not colorsensor.connected:
-	print('Error connecting to Color Sensor.')
-	exit(1)
+    print('Error connecting to Color Sensor.')
+    exit(1)
 
 # Print detected color for five seconds
 for i in range(50):
-	print(f"LEGO Color Detected: {colorsensor.sensor.color}")
-	time.sleep(0.1)
+    print(f"LEGO Color Detected: {colorsensor.sensor.color}")
+    time.sleep(0.1)
 exit(0)`,
 
-			"controller": `import legoeducation as le
+            "controller": `import legoeducation as le
 import time
 
 # Connect to the Controller
@@ -679,16 +678,16 @@ controller.connect()
 
 # Check connection
 if not controller.connected:
-	print('Error connecting to Controller.')
-	exit(1)
+    print('Error connecting to Controller.')
+    exit(1)
 
 # Print lever positions (%) for five seconds
 for i in range(50):
-	print(f"Left lever: {controller.sensor.leftPercent}, Right lever: {controller.sensor.rightPercent}")
-	time.sleep(0.1)
+    print(f"Left lever: {controller.sensor.leftPercent}, Right lever: {controller.sensor.rightPercent}")
+    time.sleep(0.1)
 exit(0)`,
 
-			"double-motor-controller": `import legoeducation as le
+            "double-motor-controller": `import legoeducation as le
 import time
 
 # Connect to the Double Motor
@@ -701,19 +700,19 @@ controller.connect()
 
 # Check connection
 if not (doublemotor.connected and controller.connected):
-	print('Error connecting to hardware.')
-	exit(1)
+    print('Error connecting to hardware.')
+    exit(1)
 
 # Control left-and-right motors (tank movement) based on left-and-right levers
 print('Running for five seconds: levers control motors.')
 for i in range(50):
-	speed_left = controller.sensor.leftPercent
-	speed_right = controller.sensor.rightPercent
-	doublemotor.movement_move_tank(speed_left=speed_left, speed_right=speed_right)
-	time.sleep(0.1)
+    speed_left = controller.sensor.leftPercent
+    speed_right = controller.sensor.rightPercent
+    doublemotor.movement_move_tank(speed_left=speed_left, speed_right=speed_right)
+    time.sleep(0.1)
 exit(0)`,
 
-			"single-motor-color-sensor": `import legoeducation as le
+            "single-motor-color-sensor": `import legoeducation as le
 import time
 
 # Connect to the Single Motor
@@ -726,262 +725,276 @@ colorsensor.connect()
 
 # Check connection
 if not (singlemotor.connected and colorsensor.connected):
-	print('Error connecting to hardware.')
-	exit(1)
+    print('Error connecting to hardware.')
+    exit(1)
 
 # If color is green, go fast (80%)
 # If color is red, go slow (10%)
 print('Running for five seconds: green is fast, red is slow.')
 for i in range(50):
-	if colorsensor.sensor.color == le.LEGO_COLOR_GREEN:
-		singlemotor.motor_run(speed=80)
-	elif colorsensor.sensor.color == le.LEGO_COLOR_RED:
-		singlemotor.motor_run(speed=10)
-	time.sleep(0.1)
+    if colorsensor.sensor.color == le.LEGO_COLOR_GREEN:
+        singlemotor.motor_run(speed=80)
+    elif colorsensor.sensor.color == le.LEGO_COLOR_RED:
+        singlemotor.motor_run(speed=10)
+    time.sleep(0.1)
 
 # Done
 singlemotor.motor_stop()
 exit(0)`,
-		};
+        };
 
-		// Track saved content for dirty detection
-		let lastSavedContent = defaultCode;
+        // Track saved content for dirty detection
+        let lastSavedContent = defaultCode;
 
-		function markAsSaved() {
-			lastSavedContent = editor.state.doc.toString();
-		}
+        function markAsSaved() {
+            lastSavedContent = editor.state.doc.toString();
+        }
 
-		function isEditorDirty() {
-			return editor.state.doc.toString() !== lastSavedContent;
-		}
+        function isEditorDirty() {
+            return editor.state.doc.toString() !== lastSavedContent;
+        }
 
-		const examplesBtn = document.getElementById("btn-examples");
-		const examplesDropdown = document.getElementById("examples-dropdown");
+        const examplesBtn = document.getElementById("btn-examples");
+        const examplesDropdown = document.getElementById("examples-dropdown");
 
-		examplesBtn.addEventListener("click", (e) => {
-			e.stopPropagation();
-			examplesDropdown.classList.toggle("hidden");
-		});
+        examplesBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            examplesDropdown.classList.toggle("hidden");
+        });
 
-		// Close dropdown when clicking outside
-		document.addEventListener("click", () => {
-			examplesDropdown.classList.add("hidden");
-		});
-		examplesDropdown.addEventListener("click", (e) => e.stopPropagation());
+        // Close dropdown when clicking outside
+        document.addEventListener("click", () => {
+            examplesDropdown.classList.add("hidden");
+        });
+        examplesDropdown.addEventListener("click", (e) => e.stopPropagation());
 
-		// Handle example selection
-		examplesDropdown.addEventListener("click", (e) => {
-			const item = e.target.closest(".examples-item");
-			if (!item) return;
-			const key = item.dataset.example;
-			const code = examples[key];
-			if (!code) return;
+        // Handle example selection
+        examplesDropdown.addEventListener("click", (e) => {
+            const item = e.target.closest(".examples-item");
+            if (!item) return;
+            const key = item.dataset.example;
+            const code = examples[key];
+            if (!code) return;
 
-			if (isEditorDirty()) {
-				if (!confirm("You have unsaved changes. Discard and load example?")) {
-					return;
-				}
-			}
+            if (isEditorDirty()) {
+                if (!confirm("You have unsaved changes. Discard and load example?")) {
+                    return;
+                }
+            }
 
-			setEditorContent(code);
-			lastSavedContent = code;
-			setFileName("");
-			fileHandle = null;
-			examplesDropdown.classList.add("hidden");
-		});
+            setEditorContent(code);
+            lastSavedContent = code;
+            setFileName("");
+            fileHandle = null;
+            examplesDropdown.classList.add("hidden");
+        });
 
-		// ── Device Panel ──
-		const DEVICE_TYPES = {
-			SingleMotor: { label: "Single Motor", defaultVar: "singlemotor" },
-			DoubleMotor: { label: "Double Motor", defaultVar: "doublemotor" },
-			ColorSensor: { label: "Color Sensor", defaultVar: "colorsensor" },
-			Controller: { label: "Controller", defaultVar: "controller" },
-		};
+        // ── Device Panel ──
+        const DEVICE_TYPES = {
+            SingleMotor: { label: "Single Motor", defaultVar: "singlemotor" },
+            DoubleMotor: { label: "Double Motor", defaultVar: "doublemotor" },
+            ColorSensor: { label: "Color Sensor", defaultVar: "colorsensor" },
+            Controller: { label: "Controller", defaultVar: "controller" },
+        };
 
-		// Each entry: { id, type, varName, connected, device (python obj ref) }
-		let panelDevices = [];
-		let deviceIdCounter = 0;
+        // Each entry: { id, type, varName, connected, device (python obj ref) }
+        let panelDevices = [];
+        let deviceIdCounter = 0;
 
-		function generateVarName(type) {
-			const base = DEVICE_TYPES[type].defaultVar;
-			const existing = panelDevices.map(d => d.varName);
-			if (!existing.includes(base)) return base;
-			let i = 2;
-			while (existing.includes(base + i)) i++;
-			return base + i;
-		}
+        function generateVarName(type, excludeId) {
+            const base = DEVICE_TYPES[type].defaultVar;
+            const existing = panelDevices
+                .filter(d => d.id !== excludeId)
+                .map(d => d.varName);
+            if (!existing.includes(base)) return base;
+            let i = 2;
+            while (existing.includes(base + i)) i++;
+            return base + i;
+        }
 
-		function isValidPythonVar(name) {
-			if (!name) return false;
-			if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name)) return false;
-			const reserved = ["False", "None", "True", "and", "as", "assert", "async", "await", "break",
-				"class", "continue", "def", "del", "elif", "else", "except", "finally", "for", "from",
-				"global", "if", "import", "in", "is", "lambda", "nonlocal", "not", "or", "pass", "raise",
-				"return", "try", "while", "with", "yield", "le", "time"];
-			return !reserved.includes(name);
-		}
+        function isValidPythonVar(name) {
+            if (!name) return false;
+            if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name)) return false;
+            const reserved = ["False", "None", "True", "and", "as", "assert", "async", "await", "break",
+                "class", "continue", "def", "del", "elif", "else", "except", "finally", "for", "from",
+                "global", "if", "import", "in", "is", "lambda", "nonlocal", "not", "or", "pass", "raise",
+                "return", "try", "while", "with", "yield", "le", "time"];
+            return !reserved.includes(name);
+        }
 
-		function isVarNameUnique(name, excludeId) {
-			return !panelDevices.some(d => d.id !== excludeId && d.varName === name);
-		}
+        function isVarNameUnique(name, excludeId) {
+            return !panelDevices.some(d => d.id !== excludeId && d.varName === name);
+        }
 
-		function updateRunButtonState() {
-			const btnRun = document.getElementById("btn-run");
-			const anyConnecting = panelDevices.some(d => d.connecting);
-			// Only manage disabled state when code is NOT running
-			// (during execution, on_run() already disables the button)
-			if (!globalThis.isCodeRunning) {
-				btnRun.disabled = anyConnecting;
-			}
-		}
+        function updateRunButtonState() {
+            const btnRun = document.getElementById("btn-run");
+            const anyConnecting = panelDevices.some(d => d.connecting);
+            // Only manage disabled state when code is NOT running
+            // (during execution, on_run() already disables the button)
+            if (!globalThis.isCodeRunning) {
+                btnRun.disabled = anyConnecting;
+            }
+        }
 
-		function renderDeviceRows() {
-			const container = document.getElementById("device-rows");
-			container.innerHTML = "";
-			panelDevices.forEach(d => {
-				const row = document.createElement("div");
-				row.className = "device-row";
-				row.dataset.deviceId = d.id;
+        function renderDeviceRows() {
+            const container = document.getElementById("device-rows");
+            container.innerHTML = "";
+            panelDevices.forEach(d => {
+                const row = document.createElement("div");
+                row.className = "device-row";
+                row.dataset.deviceId = d.id;
 
-				// Type selector
-				const sel = document.createElement("select");
-				sel.disabled = d.connected;
-				for (const [key, val] of Object.entries(DEVICE_TYPES)) {
-					const opt = document.createElement("option");
-					opt.value = key;
-					opt.textContent = val.label;
-					if (key === d.type) opt.selected = true;
-					sel.appendChild(opt);
-				}
-				sel.addEventListener("change", () => {
-					d.type = sel.value;
-				});
+                // Type selector
+                const sel = document.createElement("select");
+                sel.disabled = d.connected;
+                for (const [key, val] of Object.entries(DEVICE_TYPES)) {
+                    const opt = document.createElement("option");
+                    opt.value = key;
+                    opt.textContent = val.label;
+                    if (key === d.type) opt.selected = true;
+                    sel.appendChild(opt);
+                }
+                sel.addEventListener("change", () => {
+                    d.type = sel.value;
+                    if (!d.userEdited) {
+                        d.varName = generateVarName(d.type, d.id);
+                        renderDeviceRows();
+                    }
+                });
 
-				// Variable name input
-				const inp = document.createElement("input");
-				inp.type = "text";
-				inp.value = d.varName;
-				inp.placeholder = "var name";
-				inp.addEventListener("input", () => {
-					d.varName = inp.value.trim();
-					const valid = isValidPythonVar(d.varName) && isVarNameUnique(d.varName, d.id);
-					inp.classList.toggle("invalid", !valid);
-				});
+                // Variable name input
+                const styleInput = (device, input) => {
+                    input.style.fontStyle = device.userEdited ? "normal" : "italic";
+                    const valid = isValidPythonVar(device.varName) && isVarNameUnique(device.varName, device.id);
+                    input.classList.toggle("invalid", !valid);
+                };
 
-				// Status dot
-				const dot = document.createElement("span");
-				dot.className = "status-dot" + (d.connecting ? " connecting" : d.connected ? " connected" : "");
+                const inp = document.createElement("input");
+                inp.type = "text";
+                inp.value = d.varName;
+                inp.placeholder = "var name";
+                styleInput(d, inp);
+                inp.addEventListener("input", () => {
+                    d.userEdited = true;
+                    d.varName = inp.value.trim();
+                    styleInput(d, inp);
+                });
 
-				// Connect/Disconnect button
-				const btn = document.createElement("button");
-				btn.className = "btn-standard btn-sm";
-				btn.classList.add(d.connected ? "btn-stop" : "btn-outline");
-				btn.textContent = d.connected ? "Disconnect" : "Connect";
-				btn.disabled = d.connecting;
-				btn.addEventListener("click", async () => {
-					if (d.connected) {
-						await disconnectPanelDevice(d);
-					} else {
-						await connectPanelDevice(d);
-					}
-					renderDeviceRows();
-				});
+                // Status dot
+                const dot = document.createElement("span");
+                dot.className = "status-dot" + (d.connecting ? " connecting" : d.connected ? " connected" : "");
 
-				// Remove button
-				const removeBtn = document.createElement("button");
-				removeBtn.className = "btn-standard btn-sm btn-outline";
-				removeBtn.textContent = "×";
-				removeBtn.addEventListener("click", async () => {
-					if (d.connected) await disconnectPanelDevice(d);
-					panelDevices = panelDevices.filter(x => x.id !== d.id);
-					renderDeviceRows();
-				});
+                // Connect/Disconnect button
+                const btn = document.createElement("button");
+                btn.className = "btn-standard btn-sm";
+                btn.classList.add(d.connected ? "btn-stop" : "btn-outline");
+                btn.textContent = d.connected ? "Disconnect" : "Connect";
+                btn.disabled = d.connecting;
+                btn.addEventListener("click", async () => {
+                    if (d.connected) {
+                        await disconnectPanelDevice(d);
+                    } else {
+                        await connectPanelDevice(d);
+                    }
+                    renderDeviceRows();
+                });
 
-				row.append(dot, sel, inp, btn, removeBtn);
-				container.appendChild(row);
-			});
-			updateRunButtonState();
-		}
+                // Remove button
+                const removeBtn = document.createElement("button");
+                removeBtn.className = "btn-standard btn-sm btn-outline";
+                removeBtn.textContent = "×";
+                removeBtn.addEventListener("click", async () => {
+                    if (d.connected) await disconnectPanelDevice(d);
+                    panelDevices = panelDevices.filter(x => x.id !== d.id);
+                    renderDeviceRows();
+                });
 
-		async function connectPanelDevice(d) {
-			d.connecting = true;
-			renderDeviceRows();
-			try {
-				const connectFn = globalThis._pyConnectPanelDevice;
-				if (!connectFn) throw new Error("Python not ready");
-				const result = await connectFn(d.type, d.id);
-				if (result) {
-					d.connected = true;
-				} else {
-					d.connected = false;
-				}
-			} catch (e) {
-				console.error("Connect failed:", e);
-				d.connected = false;
-			} finally {
-				d.connecting = false;
-				renderDeviceRows();
-			}
-		}
+                row.append(dot, sel, inp, btn, removeBtn);
+                container.appendChild(row);
+            });
+            updateRunButtonState();
+        }
 
-		async function disconnectPanelDevice(d) {
-			try {
-				const disconnectFn = globalThis._pyDisconnectPanelDevice;
-				if (disconnectFn) await disconnectFn(d.id);
-			} catch (e) {
-				console.error("Disconnect failed:", e);
-			}
-			d.connected = false;
-		}
+        async function connectPanelDevice(d) {
+            d.connecting = true;
+            renderDeviceRows();
+            try {
+                const connectFn = globalThis._pyConnectPanelDevice;
+                if (!connectFn) throw new Error("Python not ready");
+                const result = await connectFn(d.type, d.id);
+                if (result) {
+                    d.connected = true;
+                } else {
+                    d.connected = false;
+                }
+            } catch (e) {
+                console.error("Connect failed:", e);
+                d.connected = false;
+            } finally {
+                d.connecting = false;
+                renderDeviceRows();
+            }
+        }
 
-		document.getElementById("btn-add-device").addEventListener("click", () => {
-			const id = "dev_" + (++deviceIdCounter);
-			const type = "SingleMotor";
-			panelDevices.push({
-				id,
-				type,
-				varName: generateVarName(type),
-				connected: false,
-				connecting: false,
-			});
-			renderDeviceRows();
-		});
+        async function disconnectPanelDevice(d) {
+            try {
+                const disconnectFn = globalThis._pyDisconnectPanelDevice;
+                if (disconnectFn) await disconnectFn(d.id);
+            } catch (e) {
+                console.error("Disconnect failed:", e);
+            }
+            d.connected = false;
+        }
 
-		globalThis._getDevicePanelState = () => {
-			return JSON.stringify(
-				panelDevices
-					.filter(d => d.connected && isValidPythonVar(d.varName))
-					.map(d => ({ id: d.id, type: d.type, varName: d.varName }))
-			);
-		};
+        document.getElementById("btn-add-device").addEventListener("click", () => {
+            const id = "dev_" + (++deviceIdCounter);
+            const type = "SingleMotor";
+            panelDevices.push({
+                id,
+                type,
+                varName: generateVarName(type, null),
+                connected: false,
+                connecting: false,
+                userEdited: false,
+            });
+            renderDeviceRows();
+        });
 
-		globalThis._getDevicePanelAllState = () => {
-			const seen = new Set();
-			return JSON.stringify(
-				panelDevices
-					.filter(d => isValidPythonVar(d.varName) && !seen.has(d.varName) && (seen.add(d.varName), true))
-					.map(d => ({ id: d.id, type: d.type, varName: d.varName }))
-			);
-		};
+        globalThis._getDevicePanelState = () => {
+            return JSON.stringify(
+                panelDevices
+                    .filter(d => d.connected && isValidPythonVar(d.varName))
+                    .map(d => ({ id: d.id, type: d.type, varName: d.varName }))
+            );
+        };
 
-		// Poll Python-side connection status to detect unexpected disconnects
-		setInterval(() => {
-			const checkFn = globalThis._pyCheckPanelDeviceConnected;
-			if (!checkFn) return;
-			let changed = false;
-			for (const d of panelDevices) {
-				if (d.connected && !d.connecting) {
-					const stillConnected = checkFn(d.id);
-					if (!stillConnected) {
-						d.connected = false;
-						changed = true;
-					}
-				}
-			}
-			if (changed) renderDeviceRows();
-		}, 1000);
+        globalThis._getDevicePanelAllState = () => {
+            const seen = new Set();
+            return JSON.stringify(
+                panelDevices
+                    .filter(d => isValidPythonVar(d.varName) && !seen.has(d.varName) && (seen.add(d.varName), true))
+                    .map(d => ({ id: d.id, type: d.type, varName: d.varName }))
+            );
+        };
 
-	</script>
+        // Poll Python-side connection status to detect unexpected disconnects
+        setInterval(() => {
+            const checkFn = globalThis._pyCheckPanelDeviceConnected;
+            if (!checkFn) return;
+            let changed = false;
+            for (const d of panelDevices) {
+                if (d.connected && !d.connecting) {
+                    const stillConnected = checkFn(d.id);
+                    if (!stillConnected) {
+                        d.connected = false;
+                        changed = true;
+                    }
+                }
+            }
+            if (changed) renderDeviceRows();
+        }, 1000);
+
+    </script>
 </body>
 
 </html>
