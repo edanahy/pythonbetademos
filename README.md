@@ -12,6 +12,7 @@ Demos built on top of the Beta Python Interface (https://beta.python.legoeducati
    - [Supervised Classification](./plugins/supervisedclassification.py)
    - [Reinforcement Learning](./plugins/reinforcementlearning.py)
    - [Pong](./plugins/pong.py)
+   - [Doom](./plugins/doom.py)
 2. Navigate to https://beta.python.legoeducation.com
 3. "Open" the `.py` file for the demo in the LEGO Education interface
 4. Connect your LEGO Education Hardware (and re-name as necessary)
@@ -70,6 +71,28 @@ The **Pong** game is controlled by the left-and-right sides of the Double Motor.
 move the paddles up and down. Full screen mode takes over the entire browser window.
 
 - File: [`pong.py`](./plugins/pong.py)
+
+### Will it Doom?
+
+![Doom Interface](./images/doom.png)
+
+*Of course it will!* The **Doom** game is controlled by a Controller and Double Motor. Full screen mode takes over the entire browser window.
+
+**Controller Controls:**
+- Left-lever forward: change weapon (cycle through)
+- Left-lever back: fire weapon
+- Right-lever forward: use/action (e.g. open doors)
+- Right-lever back: strafe mode (side-to-side when tilting)
+
+**Double Motor Controls:**
+- Tilt forward/back: move forward/back
+- Tilt left/right: turn (or strafe) left/right
+- Left motor forward: run mode
+
+![Doom Gameplay](./images/doom.gif)
+
+- File: [`doom.py`](./plugins/doom.py)
+
 
 ---
 
